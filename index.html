@@ -100,7 +100,7 @@
     </div>
     <!-- Navbar End -->
 
-
+    <div class="container" id="liveAlertPlaceholder"></div>
     <!-- Carousel Start -->
     <div class="container-fluid px-0 mb-5">
         <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
@@ -418,6 +418,7 @@
     </div>
     <!-- Service End -->
 
+
     <div id="record" class="mb-5"></div>
     <!-- Quote Start -->
     <div class="record py-5">
@@ -428,26 +429,26 @@
                     <div class="row g-3">
                         <div class="col-sm-6">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="name" placeholder="Ваше имя">
+                                <input type="text" class="form-control" name="name" id="name" placeholder="Ваше имя">
                                 <label for="name">Ваше имя</label>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-floating">
-                                <input type="email" class="form-control" id="mail" placeholder="Ваша почта">
+                                <input type="email" name="mail" class="form-control" id="mail" placeholder="Ваша почта">
                                 <label for="mail">Ваша почта</label>
                             </div>
                         </div>
 
                         <div class="col-12">
                             <div class="form-floating">
-                                <textarea class="form-control" placeholder="Текст" id="message"
+                                <textarea name="text" class="form-control" placeholder="Текст" id="message"
                                     style="height: 130px"></textarea>
                                 <label for="message">Текст</label>
                             </div>
                         </div>
                         <div class="col-12 text-center">
-                            <button class="btn btn-primary w-100 py-3" type="submit">Отправить</button>
+                            <button id="clickbutton" class="btn btn-primary w-100 py-3">Отправить</button>
                         </div>
                     </div>
                 </div>

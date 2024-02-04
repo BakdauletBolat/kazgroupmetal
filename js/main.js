@@ -10,8 +10,8 @@
         }, 1);
     };
     spinner();
-    
-    
+
+
     // Initiate the wowjs
     new WOW().init();
 
@@ -24,8 +24,8 @@
             $('.sticky-top').removeClass('shadow-sm').css('top', '-100px');
         }
     });
-    
-    
+
+
     // Back to top button
     $(window).scroll(function () {
         if ($(this).scrollTop() > 300) {
@@ -35,7 +35,7 @@
         }
     });
     $('.back-to-top').click(function () {
-        $('html, body').animate({scrollTop: 0}, 1500, 'easeInOutExpo');
+        $('html, body').animate({ scrollTop: 0 }, 1500, 'easeInOutExpo');
         return false;
     });
 
@@ -63,25 +63,63 @@
         center: true,
         dots: false,
         nav: true,
-        navText : [
+        navText: [
             '<i class="bi bi-chevron-left"></i>',
             '<i class="bi bi-chevron-right"></i>'
         ],
         responsive: {
-			0:{
-                items:1
+            0: {
+                items: 1
             },
-            576:{
-                items:1
+            576: {
+                items: 1
             },
-            768:{
-                items:2
+            768: {
+                items: 2
             },
-            992:{
-                items:3
+            992: {
+                items: 3
             }
         }
     });
-    
+
 })(jQuery);
+
+let chatId = '-1002062518408';
+let token = '6551529881:AAFTD4zQi8QG8g9L6bmW9wtLN8pzaUWRlhY';
+
+let btn = document.getElementById("clickbutton");
+btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    let name = document.getElementsByName("name");
+    let mail = document.getElementsByName("mail");
+    let text = document.getElementsByName("text");
+    let message = `Имя: ${name[0].value}; \n Почта: ${mail[0].value}; \n Текст: ${text[0].value}`
+    fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${message}`).then((res) => {
+        if (res.ok) {
+    
+     appendAlert('Вы отправили заявку', 'success')
+     window.scrollTo(0, 0);
+        }
+        else {
+            appendAlert('Ошибка', 'danger')
+            window.scrollTo(0, 0);
+        }
+    });
+});
+
+
+const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
+const appendAlert = (message, type) => {
+  const wrapper = document.createElement('div')
+  wrapper.innerHTML = [
+    `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+    `   <div>${message}</div>`,
+    '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+    '</div>'
+  ].join('')
+
+  alertPlaceholder.append(wrapper)
+}
+
 
