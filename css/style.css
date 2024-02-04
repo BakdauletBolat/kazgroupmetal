@@ -1,6 +1,6 @@
 /********** Template CSS **********/
 :root {
-    --primary: #4761FF;
+    --primary: #977e51;
     --secondary: #555555;
     --light: #F1F3FA;
     --dark: #1C2035;
@@ -12,6 +12,11 @@
     right: 30px;
     bottom: 30px;
     z-index: 99;
+}
+
+.icon-style{
+    color: var(--primary);
+    font-size: 64px;
 }
 
 .fw-medium {
@@ -600,4 +605,9 @@
 .record{
     max-width: 600px;
     margin: 0 auto;
+}
+
+.carousel-item-img{
+    object-fit: cover;
+    position: relative;
 }
