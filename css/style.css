@@ -611,3 +611,25 @@
     object-fit: cover;
     position: relative;
 }
+
+.catalog{
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.catalog__item {
+    box-shadow: 0 0 45px rgba(0, 0, 0, .08);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    padding: 40px;
+    background-color: white;
+}
+
+.catalog__item img{
+    border-radius: 5px;
+}
+    

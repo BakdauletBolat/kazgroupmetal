@@ -92,34 +92,38 @@ let btn = document.getElementById("clickbutton");
 btn.addEventListener('click', (e) => {
     e.preventDefault();
     let name = document.getElementsByName("name");
-    let mail = document.getElementsByName("mail");
-    let text = document.getElementsByName("text");
-    let message = `Имя: ${name[0].value}; \n Почта: ${mail[0].value}; \n Текст: ${text[0].value}`
-    fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${message}`).then((res) => {
-        if (res.ok) {
-    
-     appendAlert('Вы отправили заявку', 'success')
-     window.scrollTo(0, 0);
-        }
-        else {
-            appendAlert('Ошибка', 'danger')
-            window.scrollTo(0, 0);
-        }
-    });
+    let phone = document.getElementsByName("phone");
+    let message = `<b>Имя:</b> <i> ${name[0].value}; </i> <b> Телефон: </b> <i> ${phone[0].value}; </i>`
+    try {
+        fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${message}&parse_mode=HTML`).then((res) => {
+            if (res.ok) {
+                appendAlert('Вы отправили заявку', 'success')
+                window.scrollTo(0, 0);
+            }
+            else {
+                appendAlert('Ошибка', 'danger')
+                window.scrollTo(0, 0);
+            }
+        });
+    }
+    catch (e) {
+        console.log(e);
+    }
+
 });
 
 
 const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
 const appendAlert = (message, type) => {
-  const wrapper = document.createElement('div')
-  wrapper.innerHTML = [
-    `<div class="alert alert-${type} alert-dismissible" role="alert">`,
-    `   <div>${message}</div>`,
-    '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
-    '</div>'
-  ].join('')
+    const wrapper = document.createElement('div')
+    wrapper.innerHTML = [
+        `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+        `   <div>${message}</div>`,
+        '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+        '</div>'
+    ].join('')
 
-  alertPlaceholder.append(wrapper)
+    alertPlaceholder.append(wrapper)
 }
 
 
